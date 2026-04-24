@@ -1,16 +1,15 @@
 generator client {
-  provider = "prisma-client-js"
+  provider = "prisma-client"
+  output   = "../generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 enum Papel {
   COLABORADOR
   PSICOLOGO
-  ADMIN
 }
 
 enum Humor {
@@ -57,8 +56,8 @@ model PerfilColaborador {
   departamento String
   cargo        String
 
-  usuario  Usuario            @relation(fields: [usuarioId], references: [id])
-  checkins CheckinEmocional[]
+  usuario   Usuario            @relation(fields: [usuarioId], references: [id])
+  checkins  CheckinEmocional[]
   consultas Consulta[]
 
   @@map("perfil_colaborador")
